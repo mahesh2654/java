@@ -21,9 +21,8 @@ public class StudentExceptionHandler {
 
 		errorBody.put("error", "Request Failed");
 		errorBody.put("timestamp", LocalDateTime.now());
-	errorBody.put("details", ex.getMessage());
+		errorBody.put("details", ex.getMessage());
 
 		return new ResponseEntity<>(errorBody, HttpStatus.BAD_REQUEST);
 	}
-
 }
