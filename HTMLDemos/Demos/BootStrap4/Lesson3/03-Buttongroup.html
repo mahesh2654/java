@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Buttongroup Demo</title>
+        <!-- Bootstrap -->
+        <link href="../bootstrap-4.2.1-dist/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    
+    <body>
+        <div class="container">
+            <div class="page-header">
+                	<h1>Buttongroup demo</h1>
+            </div>
+            	<h4>Button groups</h4>
+            
+               <div class="btn-group">
+				  <button type="button" class="btn btn-primary">Button1</button>
+				  <button type="button" class="btn btn-primary">Button1</button>
+				  <button type="button" class="btn btn-primary">Button1</button>
+			</div>
+           
+            <hr>
+            	<h4>Button groups used as checkboxes / radio buttons</h4>
+           
+                <div class="form-group">
+                    <label for="Name" class="col-md-2 col-form-label">Name :</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" name="Name" placeholder="Enter your Name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Hobbies" class="col-md-2 col-form-label">Hobbies :</label>
+                    <div class="col-md-10">
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+					<button class="btn btn-primary active"><input type="checkbox" name="hobbies" autocomplete="off">Cricket</button>
+					<button class="btn btn-primary"><input type="checkbox"name="hobbies" autocomplete="off">Music</button>
+					<button class="btn btn-primary"><input type="checkbox" name="hobbies" autocomplete="off">Tennis</button>
+				</div>
+                </div>
+				<br>
+                <div class="col-md-10 offset-sm-2">
+                    <input type="submit" class="btn btn-info" value="Submit">
+                </div>
+            
+        </div>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins)-->
+    <script src="../jQuery/jquery-3.3.1.slim.min.js"></script> 
+	<!-- popperjs (necessary for Bootstrap's JavaScript plugins)-->
+	<script src = "../PopperJS/popper.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../bootstrap-4.2.1-dist/js/bootstrap.min.js"></script>
+    </body>
+
+</html>

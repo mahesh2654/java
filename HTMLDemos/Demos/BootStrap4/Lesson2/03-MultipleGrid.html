@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Multiple Grids</title>
+        <!-- Bootstrap -->
+       <link href="../bootstrap-4.2.1-dist/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            body {
+                padding: 0 16px;
+            }
+            [class*="col-"] {
+                color:white;
+                padding: 1em 0;
+                background-color: blue;
+                border: 1px solid powderblue;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <div class="container">
+            	<h2>Multiple Grids</h2>
+            <div class="row">
+                <div class="col-lg-8 col-12 col-xl-7">.col-lg-8 col-12 col-xl-7</div>
+                <div class="col-6 col-lg-4 col-xl-5">.col-6 col-lg-4 col-xl-5</div>
+            </div>
+            <div class="row">
+                <div class="col-xl-4 col-lg-5 col-md-5 col-sm-3 col-4">	
+					<span class="d-none d-xl-block">Extra Large - 4</span>
+					<span class="d-none d-lg-block d-xl-none">Large - 4</span>
+					<span class="d-none d-md-block d-lg-none">Medium - 5</span>
+                    <span class="d-none d-sm-block d-md-none">Small - 5</span> 
+					<span class="d-block d-sm-none">Extra Small - 4</span>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-2 col-sm-4 col-3">	
+					<span class="d-none d-xl-block">Extra Large - 4</span>
+					<span class="d-none d-lg-block d-xl-none">Large - 4</span>
+					<span class="d-none d-md-block d-lg-none">Medium - 4</span>
+					<span class="d-none d-sm-block d-md-none">Small - 2</span> 
+					<span class="d-block d-sm-none">Extra Small- 3</span>
+                </div>
+                <div class="col-xl-4 col-lg-3 col-md-5 col-sm-5 col-5">	
+					<span class="d-none d-xl-block">Extra Large - 4</span>
+					<span class="d-none d-lg-block d-xl-none">Large - 4</span>
+					<span class="d-none d-md-block d-lg-none">Medium - 3</span>
+                    <span class="d-none d-sm-block d-md-none">Small - 5</span> 
+					<span class="d-block d-sm-none">Extra Small- 5</span>
+                </div>
+            </div>
+        </div>
+        <script src="../jQuery/jquery-3.3.1.slim.min.js"></script> 
+		<!-- popperjs (necessary for Bootstrap's JavaScript plugins)-->
+		<script src = "../PopperJS/popper.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="../bootstrap-4.2.1-dist/js/bootstrap.min.js"></script>
+    </body>
+
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Forms</title>
+        <!-- Bootstrap -->
+        <link href="../bootstrap-4.2.1-dist/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    
+    <body>
+        <br>
+        <div class="container">
+             <h1>Stacked Form</h1>
+            <form>
+                <div class="form-group">
+                    <label for="Name">Name</label>
+                    <input type="text" class="form-control" name="Name" placeholder="Enter your Name">
+                </div>
+                <div class="form-group">
+                    <label for="Email">Email</label>
+                    <input type="text" class="form-control" name="Email" placeholder="Enter your Email Address">
+                </div>
+                <div class="form-group">
+                    <label for="Name">Comments</label>
+                    <textarea class="form-control" name="Name" placeholder="Your comments"></textarea>
+                </div>
+                <input type="submit" class="btn btn-success" value="Submit">
+            </form>
+            <hr>
+             <h1>Inline Form</h1>
+            <form class="form-inline" >
+                <div class="form-group">
+                    <label for="upload" class="sr-only">Upload File:</label>
+                    <input type="file" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="Email" class="sr-only">Email</label>
+                    <input type="text" class="form-control" name="Email" placeholder="Enter your Email Address">
+                </div>
+                <input type="submit" class="btn btn-success" value="Submit">
+            </form>
+            <hr>
+			<h1>Horizontal Form</h1>
+        <form>
+		<div class="form-group row">
+			<label for="first_name" class="col-xs-3 col-form-label mr-2">First Name</label>
+		<div class="col-xs-9">
+			<input type="text" class="form-control" id="first_name" name="first_name">
+		</div>
+		</div>
+		<div class="form-group row">
+			<label for="last_name" class="col-xs-3 col-form-label mr-2">Last Name</label>
+		<div class="col-xs-9">
+			<input type="text" class="form-control" id="last_name" name="last_name">
+		</div>
+		</div>
+			<div class="form-group row">
+			<div class="offset-xs-3 col-xs-9">
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</div>
+		</div>
+	</form>
+        </div>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins)-->
+    <script src="../jQuery/jquery-3.3.1.slim.min.js"></script> 
+	<!-- popperjs (necessary for Bootstrap's JavaScript plugins)-->
+	<script src = "../PopperJS/popper.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../bootstrap-4.2.1-dist/js/bootstrap.min.js"></script>
+    </body>
+
+</html>

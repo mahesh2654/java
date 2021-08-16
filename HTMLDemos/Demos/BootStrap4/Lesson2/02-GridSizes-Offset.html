@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Grid Sizes with Offset</title>
+        <!-- Bootstrap -->
+        <link href="../bootstrap-4.2.1-dist/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            body {
+                padding: 0 16px;
+            }
+            [class*="col-"] {
+                color:white;
+                padding: 1em 0;
+                background-color: blue;
+                border: 1px solid powderblue;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <div class="container">
+            	<h2>Grid Sizes-Offset</h2>
+            <div class="row">
+                <div class="col-lg-10">
+                    <p>.col-lg-10</p>
+                </div>
+                <div class="col-lg-2">
+                    <p>.col-lg-2</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 offset-md-2">
+                    <p>.col-lg-8 offset-md-2</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <p>.col-lg-6</p>
+                </div>
+                <div class="col-lg-3 offset-md-2">
+                    <p>.col-lg-3 offset-md-2</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <p>.col-lg-3</p>
+                </div>
+            </div>
+        </div>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins)-->
+		
+		<script src="../jQuery/jquery-3.3.1.slim.min.js"></script> 
+		<!-- popperjs (necessary for Bootstrap's JavaScript plugins)-->
+		<script src = "../PopperJS/popper.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="../bootstrap-4.2.1-dist/js/bootstrap.min.js"></script>
+        
+    </body>
+
+</html>
