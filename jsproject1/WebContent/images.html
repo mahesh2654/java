@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+<style type="text/css">
+
+img{
+    height:300px;
+    width:400px;
+}
+
+div{
+    border: 2px solid blue;
+    border-radius: 10px;
+    padding:15px;
+    margin :10px;
+   float:left;
+}
+</style>
+
+<script type="text/javascript">
+function changeImage(name){
+	
+	var imageName="images/"+name+".jpg";
+	
+	var image=document.getElementById("id_img")
+	image.src=imageName;
+}
+</script>
+</head>
+<body>
+
+<div>
+  <p> Select an image:</p>
+  <input type='radio'  name='image'  onChange='changeImage("lion")'>Lion<br> 
+  <input type='radio'  name='image'  onChange='changeImage("bird")'>Bird<br> 
+  <input type='radio'  name='image'  onChange='changeImage("landscape")'>Landscape<br> 
+  <input type='radio'  name='image'  onChange='changeImage("horse")'>Horse<br> 
+</div>
+
+<div  id="div">
+  
+  <img id='id_img' src='' alt="Select an Image"/>
+</div>
+
+
+</body>
+</html>
