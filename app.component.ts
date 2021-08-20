@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Employee } from 'src/emp';
+
 
 @Component({
   selector: 'app-root',
@@ -6,25 +8,35 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  employee = {
-    id: 100,
-    name: "Rajiv Kapoor",
-    address: "Hyderabad",
-    dateOfBirth:new Date("1988-10-2"),
-    salary: 25000
+
+  emp: Employee = { empId: 100, name: "Ramana" };
+  num1: number = 0
+  num2: number = 0
+
+  result: number;
+  imageName:string = 'assets/horse.jpg';
+  animal:string='Bird'
+  color = 'blue'
+
+  add(): void {
+    this.result = this.num1 + this.num2;
   }
-  
-  selectedColor:string;
-  num:number=10;
 
-  title:string="";
+  subtract(): void {
+    this.result = this.num1 - this.num2;
+  }
 
-  gender:string=''
-
-  check:boolean=true;
-
-  toggle(){
-    this.check=!this.check;
+  changeImage():void{
+    if(this.animal=='Bird'){
+      this.animal='Horse';
+      this.imageName='assets/bird.jpg'
+    }
+    else{
+      this.animal='Bird';
+      this.imageName='assets/horse.jpg'
+    }
   }
 }
+
+
 

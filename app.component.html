@@ -1,64 +1,22 @@
 
+<div class='root'>
+  <div>Enter Name: <input [(ngModel)]='emp.name'/></div>
+<h3>Employee Id: {{emp.empId}}</h3>
+
+<h3  [style.color]='color'>Name: {{emp.name}}</h3>
+
+
 <div>
-   <h3>{{employee.name}}</h3>
-   <h4> Id: {{employee.id}}</h4>
-   <p>Address: {{employee.address}}</p>
-   <p>Date of Birth: {{employee.dateOfBirth|date:"dd/MM/yyyy"}}</p>
-   <p>Salary: {{employee.salary}}</p>
+<p>First Number <input  type='number' [(ngModel)]='num1'   (change)='add()'/></p>
+<p>Second Number <input type='number' [(ngModel)]='num2'   (change)='add()'></p>
 
-</div>
-{{employee|json}}
+<button (click)='add()'>Add</button>
+<button (click)='subtract()'>Subtract</button>
 
-<br /><br/>
+<p> Result: {{result}} </p>
 
-<h3>Let us test two way binding and pipes</h3><br />
-<input type='text' [(ngModel)]='title' /><br /><br />
-
-Converted to Upper case: {{title|uppercase}} <br />
-Converted to Lower case: {{title|lowercase}} <br />
-Converted to title case: {{title|titlecase:'T'}} <br />
-
-<h3>Exponent Pipe Test</h3>
-
-<p>{{number}}</p>
-
-<input type='text' [(ngModel)]='num'><br />
-<p *ngFor="let e of [1,2,3,4]">
-   {{num}} raised to the power of {{e}} is {{num|exponent:e}}
-</p>
-<br/>
-<h3>ngIf with templates</h3>
-<button (click)='toggle()'>Click Me</button>
-
-<p *ngIf="check; then on  else off"></p>
-<ng-template #on>
-   <p>Engine is On</p>
-</ng-template>
-
-<ng-template #off>
-   <p>Now it is Off</p>
-</ng-template>
-
-<h3>ngSwitch</h3>
-<input type='text' [(ngModel)]='gender'><br />
-
-<div [ngSwitch]='gender'>
-   <p *ngSwitchCase="'M'">Male</p>
-   <p *ngSwitchCase="'F'">Female</p>
-   <p *ngSwitchDefault>Unknown</p>
+<button (click)='changeImage()'>Change to {{animal}}</button>
+<img [src]='imageName'/>
 </div>
 
-<h3>Highlight directive</h3>
-<div>
-     <input type="radio" name='c' (click)="selectedColor='lightgreen'">Green
-     <input type="radio" name='c' (click)="selectedColor='yellow'">Yellow
-     <input type="radio" name='c' (click)="selectedColor='cyan'">Cyan
 </div>
- 
-<p highlight [color]='selectedColor' [default]="'blue'"  style='width:300px' >
-   Highlighted with selected color or default color
-</p>
- 
- <p highlight style='width:300px'>
-   Highlight with red color as no attribute given
-</p>

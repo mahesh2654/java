@@ -1,7 +1,14 @@
-.show{
-    border:solid 2px  red;  
-    width:auto;
-    border-radius:15px;
-    margin-left:10px;
-    margin-bottom: 10px;
+
+
+img{
+    height:300px;
+    width:400px;
+    border:5px solid blue;
+    border-radius:10px;
+    padding:5px;
+}
+.root{
+    border:5px solid green;
+    border-radius: 10px;
+    padding:10px;
 }
