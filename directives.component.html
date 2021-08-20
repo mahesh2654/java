@@ -1,0 +1,111 @@
+<div class='container'>
+    <h2>Ng-if-example</h2>
+    <button  class='btn btn-primary' (click)='toggle()'>Toggle</button>
+
+    <br><br>
+
+
+    <!--
+ <div *ngIf="isValid">
+    <h3>The Data is valid.</h3>
+</div>
+
+<div *ngIf="!isValid">
+    <h3>The Data is invalid.</h3>
+</div> 
+
+-->
+
+    <!--
+ <div *ngIf="isValid else block2">
+    <b>The Data is valid.</b>
+</div>
+
+<ng-template #block2>
+    <div>
+        <b>The Data is invalid.</b>
+    </div>
+</ng-template> 
+-->
+
+
+    <div *ngIf="isValid then block1 else block2">
+    </div>
+
+    <ng-template #block1>
+        <div>
+            <b>The is Then Block</b>
+        </div>
+    </ng-template>
+
+    <ng-template #block2>
+        <div>
+            <b>The is Else Block</b>
+        </div>
+    </ng-template>
+    <hr />
+
+    <h2>ng-switch-example</h2>
+    <h2>Select Country </h2>
+    <select [(ngModel)]='country'>
+        <option value="">Select</option>
+        <option value="in">India</option>
+        <option value="usa">America</option>
+        <option value="uk">United Kingdom</option>
+    </select>
+
+
+    <h3>You Have Selected</h3>
+
+    <div [ngSwitch]='country'>
+        <h3 *ngSwitchCase="'in'">India</h3>
+        <h3 *ngSwitchCase="'usa'">United States of America</h3>
+        <h3 *ngSwitchCase="'uk'">United Kingdom</h3>
+        <h3 *ngSwitchDefault>You have not selected any country</h3>
+    </div>
+    <HR />
+    <h2>ng-for-example</h2>
+
+    <div>
+        <p *ngFor='let city of cities; let i=index'>
+            {{i+1}} {{city}}
+        </p>
+    </div>
+
+    <div>
+        <ol>
+
+            <li *ngFor='let city of cities'>
+                {{city}}
+        </ol>
+    </div>
+
+
+    <table >
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Branch</th>
+                <th>DOB</th>
+                <th>Gender</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor='let std of students'>
+                <td>{{std.ID}}</td>
+                <td>{{std.FirstName}}</td>
+                <td>{{std.LastName}}</td>
+                <td>{{std.Branch}}</td>
+                <td>{{std.DOB}}</td>
+                <td>{{std.Gender}}</td>
+            </tr>
+            <tr *ngIf="!students || students.length==0">
+                <td colspan="6">
+                    No Students to display
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
