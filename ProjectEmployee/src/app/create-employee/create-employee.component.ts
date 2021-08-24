@@ -9,9 +9,9 @@ import { EmployeeService } from '../employee.service';
 })
 export class CreateEmployeeComponent implements OnInit {
 
-  employee: Employee = { empid: null, name: "", salary: null, gender: 'M' }
   message: string = null;
 
+  gender:string='M'
   @Output() completed = new EventEmitter();   // has to emit 'completed' or 'cancelled'
 
   constructor(private service: EmployeeService) { }
@@ -23,12 +23,13 @@ export class CreateEmployeeComponent implements OnInit {
     this.completed.emit("cancelled");
   }
 
-  createNew() {
-    let result: string = this.service.addEmployee(this.employee)
-    if (result)
-      this.message = result;
-    else
-      this.completed.emit("completed");
+  createNew(data: any) {
+   let result: string = this.service.addEmployee(data)
+   if (result)
+     this.message = result;
+   else
+   this.completed.emit("created");
 
+    console.log(data)
   }
 }

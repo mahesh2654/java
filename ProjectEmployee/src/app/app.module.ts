@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { EmpUpdateComponent } from './emp-update/emp-update.component';
 import { CreateEmployeeComponent } from './create-employee/create-employee.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +19,6 @@ import { CreateEmployeeComponent } from './create-employee/create-employee.compo
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     FormsModule
   ],
   providers: [],

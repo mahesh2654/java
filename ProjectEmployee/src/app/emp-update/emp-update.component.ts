@@ -16,7 +16,7 @@ export class EmpUpdateComponent implements OnInit {
   }
 
   @Input() position:number
-  @Output() completed = new EventEmitter();
+  @Output() completed:EventEmitter<string> = new EventEmitter<string>();
 
   employee:Employee;
 

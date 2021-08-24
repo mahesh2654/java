@@ -1,13 +1,14 @@
 <div class='maindiv'>
     <h3 style='text-align:center;'>{{header}}</h3>
-    <table class='table'>
+    <table class='table  table-striped table-hover'>
         <tr>
             <th>EMP ID</th>
             <th>NAME</th>
             <th>SALARY</th>
             <th>GENDER</th>
             <th>ACTION</th>
-        </tr>
+        </tr> 
+        <tbody>
         <tr *ngFor='let emp of employees;let i=index' style='padding:2px'>
             <td>{{emp.empid}}</td>
             <td>{{emp.name}}</td>
@@ -22,9 +23,10 @@
                 <button class='btn btn-primary' (click)='modify(i)'>Modify</button>
             </td>
         </tr>
+        </tbody>
 
     </table>
-    <p *ngIf='message != null' class='alert alert-danger alert-dismissible fade show' (click)='message=null'>
+    <p *ngIf='message != null' class='alert alert-danger' (click)='message=null'>
         {{message}}
     </p>
     <button (click)='createNew()' class='btn btn-primary btn-block'>Create New Employee</button>
