@@ -1,0 +1,21 @@
+<div class='emp'>
+    <table class='table'>
+        <tr>
+            <td>Employee Id</td>
+            <td><input type='text' class='form-control' [(ngModel)]='employee.empid' readonly></td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td><input type='text'  class='form-control' [(ngModel)]='employee.name'></td>
+        </tr>
+        <tr>
+            <td>Salary</td>
+            <td><input type='text' class='form-control' [(ngModel)]='employee.salary'></td>
+        </tr>
+        <tr>
+            <td>Gender</td>
+            <td><input type='text' class='form-control' [(ngModel)]='employee.gender'></td>
+        </tr>
+    </table>
+    <button (click)='updated()' class='btn btn-success btn-block'>Dismiss</button>
+</div>
