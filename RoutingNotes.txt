@@ -1,0 +1,33 @@
+Routing application:
+	Create RoutingModule
+	Define routes in this module
+	Example:    
+			{path:"update",component:UpdateComponent}                <-- simple path
+			{path:"update/:empId",component:UpdateComponent}   <-- path with parameters
+	
+In the bootstrap component(AppComponent)
+		Provide links to all the components  
+			example: <a routerLink='path'>
+		provide <router-outlet>  to display component when link is clicked 
+		
+Navigating from template
+  <a  routerLink='update/100'>
+  <a [routerLink] = "[route,x]">     <-- route is variable containing path value, x is parameter value
+
+Steps required to access route parameter in a component
+
+   1.	ActivatedRoute object should be available through dependency injection
+	   (this object holds all route parameters in Observable paramMap)
+
+   2. Provide a callback method to paramMap    <-- do this in ngOnInit() method
+	   (callback method should have argument params)
+
+   3. Use params.get("parametername")  to extract route parameter	
+
+Navigating through code
+   Router object required for navigation
+	Make this object available through dependency injection
+	Call navigate(["path"]) method to navigate to some other link
+
+In routing application, all components are refered through path name
+		We never refer component name or selector
