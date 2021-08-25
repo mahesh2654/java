@@ -11,7 +11,7 @@ In the bootstrap component(AppComponent)
 		provide <router-outlet>  to display component when link is clicked 
 		
 Navigating from template
-  <a  routerLink='update/100'>
+  <a  routerLink='update/100'> 
   <a [routerLink] = "[route,x]">     <-- route is variable containing path value, x is parameter value
 
 Steps required to access route parameter in a component
