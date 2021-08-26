@@ -30,7 +30,6 @@ public class DbInit implements CommandLineRunner {
 		employeeRepository.save(new Employee(600, "Suresh", 10000));
 
 		logger.info("Data inserted into employee table");
-
 	}
 
 }

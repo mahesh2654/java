@@ -1,10 +1,7 @@
 package com.jpa.controllers;
 
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +16,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.HttpServerErrorException;
 
 import com.jpa.entity.Employee;
+import com.jpa.entity.Response;
 import com.jpa.exceptions.EmployeeNotFoundException;
 import com.jpa.exceptions.EmptyDataException;
-import com.jpa.exceptions.InvalidUserException;
 
 import com.jpa.service.EmployeeService;
 
@@ -46,7 +42,8 @@ public class EmpController {
 		return new ResponseEntity<Employee>(e, HttpStatus.OK);
 	}
 
-	@GetMapping
+	
+	@GetMapping 
 	public List<Employee> getAllEmployees() {
 
 		List<Employee> list = service.getAll();
@@ -57,26 +54,31 @@ public class EmpController {
 	}
 
 	@PostMapping
-	public String saveEmployee(@Valid @RequestBody Employee e) {
+	public ResponseEntity<?> saveEmployee(@Valid @RequestBody Employee e) {
 		service.add(e);
-		return "Employee Data successfully saved";
+		return new ResponseEntity<Response>(
+				new Response("Employee data successfully saved"),HttpStatus.OK);
 	}
 
 	@PutMapping
-	public String updatemployee(@Valid @RequestBody Employee e) {
+	public ResponseEntity<?> updatemployee(@Valid @RequestBody Employee e) {
 		if (service.update(e))
-			return "Employee data successfully updated";
+			return new ResponseEntity<Response>(
+					new Response("Employee data successfully updated"),HttpStatus.OK);
+					
 		else
 			throw new EmployeeNotFoundException("Update", "Employee with Id " + e.getEmpid() + " to update not found");
 	}
 
 	@DeleteMapping("{eid}")
-	public String deleteEmployee(@PathVariable("eid") int id) {
+	public ResponseEntity<Response> deleteEmployee(@PathVariable("eid") int id) {
 
 		if (service.delete(id))
-			return "Employee data with Id: " + id + " successfully deleted";
+			return  new ResponseEntity<Response>(
+					new Response("Employee data with Id: " + id + " successfully deleted"),HttpStatus.OK);
 		else
 			throw new EmployeeNotFoundException("Delete", "Employee with Id " + id + " to delete not found");
 	}
 
+	
 }

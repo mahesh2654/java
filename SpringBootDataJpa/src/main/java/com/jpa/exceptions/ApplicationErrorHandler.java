@@ -50,16 +50,17 @@ public class ApplicationErrorHandler extends ResponseEntityExceptionHandler  {
 		errorBody.put("errorMessage", ex.getMessage());
 		return new ResponseEntity<>(errorBody, HttpStatus.NOT_FOUND);
 	}
-
+	
 	@ExceptionHandler(EmployeeNotFoundException.class)
 	public ResponseEntity<?> handleMissingEmployee(EmployeeNotFoundException ex) {
 
 		Map<String, Object> errorBody = new LinkedHashMap<>();
 		errorBody.put("errorMessage", ex.getMessage());
 
-		return new ResponseEntity<>(errorBody, HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(errorBody, HttpStatus.BAD_REQUEST);
 	}
 
+	
 	@ExceptionHandler(InvalidUserException.class)
 	public ResponseEntity<?> handleUserDataErrors(InvalidUserException ex) {
 

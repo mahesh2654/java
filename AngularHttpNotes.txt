@@ -1,0 +1,13 @@
+
+ Data objects on client and server should match
+Service class should have HttpClient provided through dependency injection
+Add HttpClientModule to AppModule imports(import mannually if suggest does not work)
+			import {HttpClientModule } from '@angular/common/http';
+In the service class provide methods to handle data with HttpClient
+	If the response is object convertable to json -- OK
+	If the response is string (not convertable to JSON) 
+					-- use additional parameter {responseTyp:'text'} inside HttpClient methods
+	HttpClient get() and delete() methods need URL as argument
+	HttpClient post() and put() methods need URL as first argument and object as second argument
+	
+	All the methods of HttpClient return Observable. 

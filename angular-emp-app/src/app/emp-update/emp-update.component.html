@@ -1,0 +1,36 @@
+<div class='emp'>
+    <div *ngIf='failMessage==null'>
+    <table class='table' >
+        <tr>
+            <td>Employee Id</td>
+            <td><input type='text' class='form-control' [(ngModel)]='employee.empid' readonly></td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td><input type='text'  class='form-control' [(ngModel)]='employee.name'></td>
+        </tr>
+        <tr>
+            <td>Salary</td>
+            <td><input type='text' class='form-control' [(ngModel)]='employee.salary'></td>
+        </tr>
+      
+    </table>
+    <button (click)='update()' class='btn btn-success btn-block'>Update</button>
+
+    </div>
+    <div *ngIf='failMessage != null'>
+        {{failMessage}}
+        </div>
+        
+    <!-- Below message to be clicked to navigate back to emp-list component-->
+    <div *ngIf='message != null' [ngClass]='msgClass' (click)='gotoList()'>
+        {{message}}! Click to go back
+    </div>
+
+    <div *ngIf='validationMessages != null' (click)='validationMessages=null'>
+
+        <p *ngFor='let msg of validationMessages' class='alert alert-danger'>
+            {{msg}}
+        </p>
+    </div>
+</div>
