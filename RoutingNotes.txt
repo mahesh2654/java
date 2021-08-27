@@ -22,7 +22,7 @@ Steps required to access route parameter in a component
    2. Provide a callback method to paramMap    <-- do this in ngOnInit() method
 	   (callback method should have argument params)
 
-   3. Use params.get("parametername")  to extract route parameter	
+   3. Use params.get("parameterName")  to extract route parameter	
 
 Navigating through code
    Router object required for navigation
