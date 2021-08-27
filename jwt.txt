@@ -30,8 +30,31 @@ Spring Boot JWT application:
 					-- validate the token
 					-- check expiration of token
 					--  etc
-	3. Create AuthenticationController with login method
+	3. Create LoginController with login method
 				-- check username and password supplied in the request
 				-- if valid, use JwtUtil to generate token and send token as a reponse
 				-- if not valid throw login exception
+
+
+Angular JWT application:
+
+	1. Additional packages to be installed: (npm install)
+		   angular2-jwt
+		  @angular/http
+		   rxjs-compat
+     2. Routes in angular can be converted to protected with additional parameter canActivate
+				canActivate takes array of services which check and guard the routes
+				These service classes should implement CanActivate interface and provide canActivate() method
+				If canActivate() returns true, route is open to that component else it is blocked
+	 
+	3. LoginService will send the username, password to server application
+			receive JWT and store into local storage
+			If login fails, let the component take message and handle it
+	4. Angular provides HTTP interceptors to intercept every request
+			This interceptor class should implement HttpInterceptor interface
+			puts the token in header part of every request
+			This interceptor has to be registered as provider in AppModule
+						 providers: [
+									{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor,multi:true }
+							]
 	
