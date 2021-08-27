@@ -68,4 +68,12 @@ public class ApplicationErrorHandler extends ResponseEntityExceptionHandler  {
 
 		return new ResponseEntity<>(errorBody, HttpStatus.BAD_REQUEST);
 	}
+	@ExceptionHandler(InvalidTokenException.class)
+	public ResponseEntity<?> handleTokenErrors(InvalidTokenException ex) {
+
+		Map<String, Object> errorBody = new LinkedHashMap<>();
+		errorBody.put("errorMessage", ex.getMessage());
+
+		return new ResponseEntity<>(errorBody, HttpStatus.BAD_REQUEST);
+	}
 }

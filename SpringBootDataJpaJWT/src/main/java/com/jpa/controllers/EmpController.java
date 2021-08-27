@@ -20,12 +20,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jpa.entity.Employee;
 import com.jpa.entity.Response;
+import com.jpa.entity.User;
 import com.jpa.exceptions.EmployeeNotFoundException;
 import com.jpa.exceptions.EmptyDataException;
 import com.jpa.exceptions.InvalidUserException;
 import com.jpa.jwt.JwtTokenUtil;
 import com.jpa.service.EmployeeService;
 
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.SignatureException;
 
 @RestController
@@ -39,9 +41,11 @@ public class EmpController {
 	@Autowired
 	private JwtTokenUtil jwtTokenUtil;
 
+	User user = null;
 	@GetMapping(value = "{eid}")
 	public ResponseEntity<Employee> getEmployee(@PathVariable("eid") int empId,HttpServletRequest request) {
-		validateToken(request);
+		user = jwtTokenUtil.validateTokenAndGetUserDetails(request);
+	
 		Employee e = service.get(empId);
 
 		if (e == null)
@@ -53,7 +57,7 @@ public class EmpController {
 	
 	@GetMapping 
 	public List<Employee> getAllEmployees(HttpServletRequest request) {
-		validateToken(request);
+		user = jwtTokenUtil.validateTokenAndGetUserDetails(request);
 
 		List<Employee> list = service.getAll();
 		if (list.size() == 0)
@@ -64,7 +68,7 @@ public class EmpController {
 
 	@PostMapping
 	public ResponseEntity<?> saveEmployee(@Valid @RequestBody Employee e,HttpServletRequest request) {
-		validateToken(request);
+		user = jwtTokenUtil.validateTokenAndGetUserDetails(request);
 		service.add(e);
 		return new ResponseEntity<Response>(
 				new Response("Employee data successfully saved"),HttpStatus.OK);
@@ -72,7 +76,7 @@ public class EmpController {
 
 	@PutMapping
 	public ResponseEntity<?> updatemployee(@Valid @RequestBody Employee e,HttpServletRequest request) {
-		validateToken(request);
+		user = jwtTokenUtil.validateTokenAndGetUserDetails(request);
 		if (service.update(e))
 			return new ResponseEntity<Response>(
 					new Response("Employee data successfully updated"),HttpStatus.OK);
@@ -83,7 +87,7 @@ public class EmpController {
 
 	@DeleteMapping("{eid}")
 	public ResponseEntity<Response> deleteEmployee(@PathVariable("eid") int id,HttpServletRequest request) {
-		validateToken(request);
+		user = jwtTokenUtil.validateTokenAndGetUserDetails(request);
 
 		if (service.delete(id))
 			return  new ResponseEntity<Response>(
@@ -92,25 +96,6 @@ public class EmpController {
 			throw new EmployeeNotFoundException("Delete", "Employee with Id " + id + " to delete not found");
 	}
 
-	public void validateToken(HttpServletRequest request) {
-		final String tokenHeader = request.getHeader("Authorization");
 
-		String token = null;
-
-		if (tokenHeader == null)
-			throw new InvalidUserException("User Not Logged In or token not included");
-		// JWT Token is in the form "Bearer token". Remove Bearer word
-		if (!tokenHeader.startsWith("Bearer "))
-			throw new InvalidUserException("Invalid Token");
-
-		token = tokenHeader.substring(7);
-		try {
-			if (!(jwtTokenUtil.validateToken(token)))
-				throw new InvalidUserException("Token Expired. Need Relogin");
-
-		} catch (SignatureException ex) {
-			throw new InvalidUserException("Invalid Token");
-		}
-	}
 
 }

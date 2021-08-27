@@ -23,8 +23,8 @@ import com.jpa.repository.UserRepository;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/authenticate")
-public class AuthenticationController {
+@RequestMapping("/login")
+public class LoginController {
 
 	@Autowired
 	private JwtTokenUtil jwtTokenUtil;
@@ -35,24 +35,23 @@ public class AuthenticationController {
 	User user;
 
 	@PostMapping
-	public ResponseEntity<?> createAuthenticationToken(@RequestBody LoginData request) throws Exception {
+	public ResponseEntity<?> createAuthenticationToken(@RequestBody LoginData data) throws Exception {
 
-		Optional<User> userData = userRepository.findById(request.getUsername());
+		Optional<User> userData = userRepository.findById(data.getUsername());
 
 		if (userData.isPresent()) {
 			user = userData.get();
 		} else {
-			throw new InvalidUserException("User not found with username: " + request.getUsername());
+			throw new InvalidUserException("User not found with username: " + data.getUsername());
 		}
 
-		if (!(user.getPassword().equals(request.getPassword())))
+		if (!(user.getPassword().equals(data.getPassword())))
 			throw new InvalidUserException("Invalid Password");
 
 		String token = jwtTokenUtil.generateToken(user);
 
 		return ResponseEntity.ok(new TokenEntity(token));
-		
-		//return new ResponseEntity<String>(token, HttpStatus.OK);
+
 	}
 
 }
