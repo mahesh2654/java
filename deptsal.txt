@@ -1,0 +1,64 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. DEPTSAL.
+       ENVIRONMENT DIVISION.
+       INPUT-OUTPUT SECTION.
+       FILE-CONTROL.
+           SELECT EMP-FIL ASSIGN TO EMPIN
+              ORGANIZATION SEQUENTIAL.
+       DATA DIVISION.
+       FILE SECTION.
+       FD  EMP-FIL.
+       01  EMP-REC.
+           02 FILLER PIC X(19).
+           02 SALARY PIC 9(6).
+           02 FILLER PIC X(9).
+           02 DEPTNO  PIC XX.
+           02 FILLER  PIC X(44).
+      *COPY EMPSTRU.
+       WORKING-STORAGE SECTION.
+       01 OUT-DATA.
+          02 FILLER PIC X(27) VALUE "TOTAL SALARY OF DEPARTMENT" .
+          02 ODEPT-NAME  PIC X(16).
+          02 DEPT-TOTAL    PIC Z(7).
+       01  X PIC 9 VALUE ZERO.
+       01  WRONG-TOTAL PIC 9(80 VALUE ZERO.
+       01 DEPT-DATA.
+          02 FILLER PIC X(18) VALUE 'SASales'.
+          02 FILLER pic 9(8) value zero.
+          02 FILLER PIC X(18) VALUE 'HRHuman Resources'.
+          02 FILLER pic 9(8) value zero.
+          02 FILLER PIC X(18) VALUE 'TETechnical'.
+          02 FILLER pic 9(8) value zero.
+          02 FILLER PIC X(18) VALUE 'ADAdmin'.
+          02 FILLER pic 9(8) value zero.
+       01 FILLER REDEFINES DEPT-DATA.
+          02 DEPT-TBL OCCURS 4 TIMES INDEXED BY I.
+             03 DEPT-CODE PIC XX.
+             03 DEPT-NAME PIC X(16).
+             03 TOTAL PIC 9(8).
+       PROCEDURE DIVISION.
+       0001-MAIN-PARA.
+           OPEN INPUT EMP-FIL
+           PERFORM 0002-READ-PARA
+           PERFORM 0003-PROCESS-PARA UNTIL X = 1
+           PERFORM 0004-LAST-PARA
+           CLOSE EMP-FIL
+           STOP RUN.
+       0002-READ-PARA.
+           READ EMP-FIL AT END MOVE 1 TO X
+           END-READ.
+       0003-PROCESS-PARA.
+           SET I TO 1
+           SEARCH DEPT-TBL
+               AT END ADD SALARY TO WRONG-TOTAL
+               WHEN DEPTNO = DEPT-CODE(I)
+                  ADD SALARY TO TOTAL(I)
+           END-SEARCH
+           PERFORM 0002-READ-PARA.
+       0004-LAST-PARA.
+           PERFORM VARYING I FROM 1 BY 1 UNTIL I > 4
+             MOVE DEPT-NAME(I) TO ODEPT-NAME
+             MOVE TOTAL(I) TO DEPT-TOTAL
+             DISPLAY OUT-DATA
+           END-PERFORM.
+
