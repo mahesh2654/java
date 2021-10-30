@@ -1,0 +1,15 @@
+
+1. program which accepts 8 names from console and display the following
+
+	a. names which start with vowel
+	b. names which ends with Reddy (uppercase or lowercase)
+	c. names  containing ab any where 
+	d. names whose length > 5
+	
+2. program to accept a sentence from console and change all the vowels with a corresponding digit
+
+		example:   hello how are you   --> to be converted to -->  h2ll4 h4w 1r2 y45
+
+3. program with a method which takes a String as argument and returns a converted String
+			convert all digits in to the words
+			example: 			AB3X4D  --> converted to -->  ABthreeXfourD
