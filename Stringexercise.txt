@@ -13,3 +13,5 @@
 3. program with a method which takes a String as argument and returns a converted String
 			convert all digits in to the words
 			example: 			AB3X4D  --> converted to -->  ABthreeXfourD
+			
+	
