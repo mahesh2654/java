@@ -1,0 +1,36 @@
+Stream examples with Stream of String
+-----------------------------------------------
+	//display all elements from the list
+		list.stream()
+	//	.forEach( s-> System.out.println(s)  );   // lambda for Consumer
+		.forEach(System.out::println);			// method reference for Consumer	
+============================================================================
+//display all elements whose length > 7 in the sorted order
+		
+		list.stream()
+		.filter(s-> s.length() > 7) 
+		.sorted()
+		.forEach(System.out::println);	
+=============================================================================		
+//display all unique elements in sorted order whose length > 7 
+		
+		list.stream()
+		.distinct()
+		.filter(s-> s.length() > 7) 
+		.sorted()
+		.forEach(System.out::println);	
+=============================================================================
+//display all elements in uppercase
+		
+		list.stream()
+		.distinct()
+		.map( s -> s.toUpperCase() )             //  .map(String::toUpperCase)
+		.forEach(System.out::println);		
+============================================================================
+		
+		//display count of elements starting with 'H'
+	long count = 	
+		list.stream()
+		.filter(s-> s.startsWith("H"))
+		.count();
+	System.out.println(count);
