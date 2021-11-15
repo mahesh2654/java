@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.app.dao.EmployeeDao;
-import com.app.dao.EmployeeDaoImpl;
+
 import com.app.data.Employee;
 import com.app.exceptions.DataNotFoundException;
 import com.app.exceptions.DuplicateEmployeeException;
@@ -13,7 +13,11 @@ import com.app.exceptions.ServiceException;
 
 public class EmployeeServiceImpl implements EmployeeService {
 
-	EmployeeDao dao = new EmployeeDaoImpl();
+	EmployeeDao dao ;
+
+	public EmployeeServiceImpl(EmployeeDao dao) {
+		this.dao = dao;
+	}
 
 	@Override
 	public Employee getOneEmployee(int eid) {
@@ -89,6 +93,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 		.get(0);
 		
 		return x;
+	}
+
+	@Override
+	public void close() {
+		dao.terminate();
+		
 	}
 
 }
