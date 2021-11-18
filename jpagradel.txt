@@ -1,0 +1,5 @@
+implementation group: 'org.hibernate', name: 'hibernate-core', version: '5.0.0.Final'
+
+implementation group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.0.0.Final'
+
+implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.18'
