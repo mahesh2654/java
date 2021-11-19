@@ -9,7 +9,7 @@
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<properties>
 			<property name="javax.persistence.jdbc.url"
-				value="jdbc:postgresql://localhost:5433/postgres" />
+				value="jdbc:postgresql://localhost/postgres" />
 			<property name="javax.persistence.jdbc.user" value="postgres" />
 			<property name="javax.persistence.jdbc.password" value="postgres" />
 			<property name="javax.persistence.jdbc.driver"
