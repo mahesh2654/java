@@ -1,4 +1,4 @@
-package com.cg.jpastart.entities;
+package com.cg.mtom.main;
 
 import java.util.Date;
 
@@ -6,7 +6,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-public class Client {
+import com.cg.mtom.entities.Order;
+import com.cg.mtom.entities.Product;
+
+public class CreateMain{
 
 	public static void main(String[] args) {
 

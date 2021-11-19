@@ -21,6 +21,7 @@ public class Employee {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "dept_fk")
 	private Department department;
+	
 	public int getEmpId() {
 		return empId;
 	}

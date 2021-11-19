@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
                       http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 	version="2.0">
-	<persistence-unit name="JPA-PU"
+	<persistence-unit name="ONETOMANYPU"
 		transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<properties>
@@ -14,7 +14,7 @@
 			<property name="javax.persistence.jdbc.password" value="postgres" />
 			<property name="javax.persistence.jdbc.driver"
 				value="org.postgresql.Driver" />
-	 	<property name="hibernate.hbm2ddl.auto" value="create" /> 
+	 	<property name="hibernate.hbm2ddl.auto" value="none" /> 
 		</properties>
 	</persistence-unit>
 </persistence>
