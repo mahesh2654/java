@@ -18,9 +18,8 @@ import javax.persistence.Table;
 @DiscriminatorColumn(name = "emp_type", discriminatorType = DiscriminatorType.STRING,length = 3) // additional column to differ
 																						// parent and child
 @DiscriminatorValue("EMP") // parent rows will have this value in Discriminator Column
-public class Employee implements Serializable {
+public class Employee {
 
-	private static final long serialVersionUID = 1L;
 	@Id
 	private int employeeId;
 	@Column(length = 20)

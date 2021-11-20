@@ -44,9 +44,6 @@ public class InheritanceMain {
 		Manager m1 = em.find(Manager.class, 200);
 		Director d1=em.find(Director.class, 300);
 
-		System.out.println(e1);
-		System.out.println(m1);
-		System.out.println(d1);
 
 		em.close();
 		factory.close();

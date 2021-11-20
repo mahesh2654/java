@@ -4,8 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -23,7 +22,7 @@ public class Employee implements Serializable {
 	@Column(length=25)
 	private String name;
 	private double salary;
-
+	
 	public int getEmployeeId() {
 		return employeeId;
 	}
@@ -45,7 +44,7 @@ public class Employee implements Serializable {
 	}
 
 	public void setSalary(double salary) {
-		this.salary = salary;
+	this.salary=salary;
 	}
 
 	@Override
