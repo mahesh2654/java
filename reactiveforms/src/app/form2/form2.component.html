@@ -1,0 +1,44 @@
+<div class='container' style='width:400px;float:left;'>
+  <form [formGroup]="userForm" (submit)='submitForm(userForm.value)'>
+
+    <div class='form-group'>
+      <label> First Name:</label>
+      <input type="text" class='form-control' formControlName="firstName" >
+    </div>
+    <div class="alert alert-danger" *ngIf="userForm.get('firstName').touched && userForm.get('firstName').invalid">
+      <div *ngIf="userForm.get('firstName').errors.required">
+        First Name is required
+      </div>
+      <div *ngIf="userForm.get('firstName').errors.minlength">
+        First Name should be minimum {{userForm.get('firstName').errors.minlength.requiredLength}} characters
+      </div>
+    </div>
+    <div class='form-group'>
+      <label> Last Name:</label>
+      <input type="text" class='form-control' formControlName="lastName">
+    </div>
+    <div class="alert alert-danger" *ngIf="userForm.get('lastName').touched && userForm.get('lastName').invalid">
+      <div *ngIf="userForm.get('lastName').errors.required">
+        Last Name is required
+      </div>
+      <div *ngIf="userForm.get('lastName').errors.minlength">
+        Last Name should be minimum {{userForm.get('lastName').errors.minlength.requiredLength}} characters
+      </div>
+    </div>
+
+    <div class='form-group'>
+      <label> Description:</label>
+      <textarea class='form-control' formControlName="description"></textarea>
+    </div>
+
+    <div class="alert alert-danger" *ngIf="userForm.get('description').touched && userForm.get('description').invalid">
+
+      <div *ngIf="userForm.get('description').errors.minlength">
+        Description should be minimum {{userForm.get('description').errors.minlength.requiredLength}} characters
+      </div>
+    </div>
+
+    <button type='submit' class='btn btn-primary btn-block'  [disabled]='userForm.invalid'>Submit</button>
+
+  </form>
+</div>
