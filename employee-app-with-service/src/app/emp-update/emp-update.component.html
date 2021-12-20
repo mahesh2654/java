@@ -1,0 +1,22 @@
+<p style="text-align: center">Update Employee Data</p>
+
+
+  Emp Id:
+  <input class='form-control'  [ngModel]="emp.empId"  readonly />
+
+
+  Name:
+  <input class="form-control"  [(ngModel)]="emp.name" />
+
+  Salary:
+  <input class="form-control" [(ngModel)]="emp.salary"  />
+   Gender: 
+  <input class="form-control" [(ngModel)]="emp.gender" />
+
+D O B:
+  <input type="date" class='form-control' [ngModel] ="emp.dob|date:'yyyy-MM-dd'" (ngModelChange)="emp.dob = $event">
+
+<div>
+  <button class='btn btn-primary btn-block' (click)='saveData()'>Save</button>
+  <button class='btn btn-danger btn-block' (click)='cancel()'>Cancel</button>
+</div>

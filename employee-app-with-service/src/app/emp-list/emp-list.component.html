@@ -1,0 +1,49 @@
+<div  class='container'>
+  <div class="listdiv">
+    <h3 style="text-align: center">Employee List</h3>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>EMP ID</th>
+          <th>NAME</th>
+          <th>SALARY</th>
+          <th>GENDER</th>
+          <th>D O B</th>
+          <th>ACTION</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let e of employees; let x = index">
+          <td>{{ e.empId }}</td>
+          <td>{{ e.name }}</td>
+          <td>{{ e.salary}}</td>
+
+          <td [ngSwitch]="e.gender">
+            <span *ngSwitchCase="'M'">Male</span>
+            <span *ngSwitchCase="'F'">Female</span>
+            <span *ngSwitchDefault>Unknown</span>
+          </td>
+          <td>{{ e.dob | date: "dd-MM-yyyy" }}</td>
+          <td class='btn-group'>
+            <button class="btn btn-outline-info mr-2" (click)="update(x)"  [disabled]='creating||updating'>Modify</button>
+            <button class="btn btn-outline-danger" (click)="delete(x)"  [disabled]='creating||updating'>Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p *ngIf="message" class="alert alert-danger"  (click)="message = null" >
+      {{ message }}
+    </p>
+    <button class='btn btn-info btn-block' (click)='createNew()'>Create New Employee</button>
+  </div>
+  <div class="updatediv"  *ngIf='updating'>
+    <emp-update  [pos]='pos' (close)='updateCompleted($event)' ></emp-update>
+  </div>
+
+  <div class="updatediv" *ngIf='creating' >
+    <emp-create   (close)='saveNewEmp($event)'></emp-create>
+  </div>
+
+</div>
+
