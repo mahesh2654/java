@@ -22,6 +22,7 @@ public class DbInit implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 
 		logger.info("H2 datbase empdb created");
+	
 		employeeRepository.save(new Employee(100, "Dinesh", 22000));
 		employeeRepository.save(new Employee(200, "Ganesh", 11000));
 		employeeRepository.save(new Employee(300, "Mahesh", 20000));

@@ -30,7 +30,6 @@ public class Employee {
 	private float salary;
 
 	public Employee() {
-
 	}
 
 	public Employee(int empid,String name, float salary) {

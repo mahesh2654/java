@@ -26,7 +26,7 @@ import com.jpa.service.EmployeeService;
 
 @RestController
 @RequestMapping("employees")
-//@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 public class EmpController {
 
 	@Autowired
@@ -56,29 +56,25 @@ public class EmpController {
 	@PostMapping
 	public ResponseEntity<?> saveEmployee(@Valid @RequestBody Employee e) {
 		service.add(e);
-		return new ResponseEntity<Response>(
-				new Response("Employee data successfully saved"),HttpStatus.OK);
+		return new ResponseEntity<String>("Employee data successfully saved",HttpStatus.OK);
 	}
 
 	@PutMapping
-	public ResponseEntity<?> updatemployee(@Valid @RequestBody Employee e) {
+	public ResponseEntity<String> updatemployee(@Valid @RequestBody Employee e) {
 		if (service.update(e))
-			return new ResponseEntity<Response>(
-					new Response("Employee data successfully updated"),HttpStatus.OK);
-					
+			return ResponseEntity.ok("Employee data successfully updated");
 		else
 			throw new EmployeeNotFoundException("Update", "Employee with Id " + e.getEmpid() + " to update not found");
 	}
+	
 
 	@DeleteMapping("{eid}")
-	public ResponseEntity<Response> deleteEmployee(@PathVariable("eid") int id) {
+	public ResponseEntity<String> deleteEmployee(@PathVariable("eid") int id) {
 
 		if (service.delete(id))
-			return  new ResponseEntity<Response>(
-					new Response("Employee data with Id: " + id + " successfully deleted"),HttpStatus.OK);
+			return  new ResponseEntity<String>("Employee data with Id: " + id + " successfully deleted",HttpStatus.OK);
 		else
 			throw new EmployeeNotFoundException("Delete", "Employee with Id " + id + " to delete not found");
 	}
 
-	
 }
