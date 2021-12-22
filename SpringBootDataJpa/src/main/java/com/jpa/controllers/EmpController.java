@@ -60,9 +60,9 @@ public class EmpController {
 	}
 
 	@PutMapping
-	public ResponseEntity<String> updatemployee(@Valid @RequestBody Employee e) {
+	public ResponseEntity<Response> updatemployee(@Valid @RequestBody Employee e) {
 		if (service.update(e))
-			return ResponseEntity.ok("Employee data successfully updated");
+			return new  ResponseEntity<Response>(new Response("Employee data successfully updated"));
 		else
 			throw new EmployeeNotFoundException("Update", "Employee with Id " + e.getEmpid() + " to update not found");
 	}
