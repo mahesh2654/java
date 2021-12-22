@@ -17,11 +17,11 @@ export class EmpCreateComponent {
   validationMessages: string[];
   saveData(emp: Employee) {
     this.service.saveEmployee(emp).subscribe(
-      (response) => this.close.emit(response),
+      (resp) => this.close.emit(resp.message),
 
       (fail) => {
-        this.message = JSON.parse(fail.error).errorMessage;
-        this.validationMessages = JSON.parse(fail.error).errors;
+        this.message = fail.error.errorMessage;
+        this.validationMessages = fail.error.errors;
       }
     );
   }

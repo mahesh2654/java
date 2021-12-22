@@ -7,6 +7,7 @@ import { EmpUpdateComponent } from './emp-update/emp-update.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EmpCreateComponent } from './emp-create/emp-create.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

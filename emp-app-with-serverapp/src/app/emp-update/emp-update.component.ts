@@ -27,12 +27,12 @@ export class EmpUpdateComponent implements OnInit {
   }
   saveData() {
     this.service.updateEmployee(this.emp).subscribe(
-      (message)=> this.close.emit(message),
+      (resp)=> this.close.emit(resp.message),
       (fail)=>{
         if(fail.error.errorMessage){
-            this.close.emit(JSON.parse(fail.error).errorMessage)
+            this.close.emit(fail.error.errorMessage)
         }
-         this.validationMessages=JSON.parse(fail.error).errors
+         this.validationMessages=fail.error.errors
       }
     )
   }

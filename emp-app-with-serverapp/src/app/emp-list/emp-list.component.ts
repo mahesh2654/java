@@ -1,4 +1,3 @@
-
 import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
@@ -17,7 +16,7 @@ export class EmpListComponent implements OnInit {
     this.loadData();
   }
 
-  errorMessage:string=null;
+  errorMessage: string = null;
   employees: Employee[];
 
   message: string = null;
@@ -28,43 +27,41 @@ export class EmpListComponent implements OnInit {
   creating: boolean = false;
 
   delete(empid: number) {
-
     this.service.deleteEmployee(empid).subscribe(
-      (data) => { this.loadData()
-                  this.message=data },
+      (resp) => {
+        this.loadData();
+        this.message = resp.message;
+      },
       (response) => {
         console.log(response.error.errorMessage);
       }
-      )
+    );
   }
 
   update(empid: number) {
     this.updating = true;
-    this.empid=empid
+    this.empid = empid;
   }
 
-  updateCompleted(message:string) {
+  updateCompleted(message: string) {
     this.updating = false;
-    this.message=message;
-    this.loadData()
+    this.message = message;
+    this.loadData();
   }
 
   createNew() {
     this.creating = true;
-
   }
 
-  saveNewEmp(message:string) {
-    this.loadData()
-    this.message=message
-    this.creating=false
-
+  saveNewEmp(message: string) {
+    this.loadData();
+    this.message = message;
+    this.creating = false;
   }
   loadData() {
-
     this.service.getAllEmployees().subscribe(
-      (data)=>  this.employees= data,
-      (response) => this.errorMessage= response.error.errorMessage
-    )
+      (data) => (this.employees = data),
+      (response) => (this.errorMessage = response.error.errorMessage)
+    );
   }
 }

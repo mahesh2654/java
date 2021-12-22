@@ -20,17 +20,17 @@ export class EmpService {
   }
 
   saveEmployee(emp: Employee): Observable<any> {
-    return this.http.post(this.baseUrl, emp, {responseType:'text'});
+    return this.http.post(this.baseUrl, emp);
   }
 
   updateEmployee(emp: Employee): Observable<any> {
    
-    return this.http.put(this.baseUrl, emp, {responseType:'text'});
+    return this.http.put(this.baseUrl, emp);
   }
 
   deleteEmployee(empid: number): Observable<any> {
    
-    return this.http.delete(`${this.baseUrl}/${empid}`, {responseType:'text'});
+    return this.http.delete(`${this.baseUrl}/${empid}`);
   }
 
 }
