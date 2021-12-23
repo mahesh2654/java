@@ -1,0 +1,60 @@
+What is JWT:
+	String containing data using a secret key
+	JWT can be created if secret key is known
+	we can select type of encryption algorithm
+	
+	Every token contains 3 parts --> header, payload, signature
+						hhhhh.ppppppp.sssssss
+	payload contains data which can be accessed by decoding token
+	secret key not required to decode payload
+
+Implementing security with JWT:
+
+		User login
+		server checks for credentials (username and password)
+		server sends a token (JWT) to the client
+		JWT is kept on the client side (angular saves it in browser localStorage)
+		To send next request, JWT is attached to the request(in the header)  as below
+				Authorization: Bearer <token>
+		server checks the token and if it is valid and allows to access the controller method
+
+		JWT can be set with expiration time
+
+		When user logout, token is deleted on client side (removed from localStorage)
+
+Spring Boot JWT application:
+	1. add dependency for JWT
+				implementation 'io.jsonwebtoken:jjwt:0.9.1'
+	2. Create a class JwtUtil to have methods for JWT
+					-- create a token
+					-- validate the token
+					-- check expiration of token
+					--  etc
+	3. Create LoginController with login method
+				-- check username and password supplied in the request
+				-- if valid, use JwtUtil to generate token and send token as a reponse
+				-- if not valid throw login exception
+
+
+Angular JWT application:
+
+	1. Additional packages to be installed: (npm install)
+		   angular2-jwt
+		  @angular/http
+		   rxjs-compat
+     2. Routes in angular can be converted to protected with additional parameter canActivate
+				canActivate takes array of services which check and guard the routes
+				These service classes should implement CanActivate interface and provide canActivate() method
+				If canActivate() returns true, route is open to that component else it is blocked
+	 
+	3. LoginService will send the username, password to server application
+			receive JWT and store into local storage
+			If login fails, let the component take message and handle it
+	4. Angular provides HTTP interceptors to intercept every request
+			This interceptor class should implement HttpInterceptor interface
+			puts the token in header part of every request
+			This interceptor has to be registered as provider in AppModule
+						 providers: [
+									{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor,multi:true }
+							]
+	
