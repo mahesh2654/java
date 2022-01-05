@@ -62,6 +62,9 @@ Arrays
 				System.out.println(a)
 		}
 		
+Array of objects:
+	array of objects is simply array of references
+	default value for references is null
 
 
 
