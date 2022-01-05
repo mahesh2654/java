@@ -1,0 +1,68 @@
+
+static variable 
+	common to all objects
+	only one copy exists in memory irrespective of number of objects
+	can be accessed by all objects
+	also called as class level variable
+	
+static methods
+		methods declared as static
+		can only refer static vriables
+		can only call static methods
+		they are also refered as class level methods
+		these methods can be called using any object reference
+		they can call using class name
+
+Object creation process:
+	allocate storage for object in heap memory
+	initialize all fileds 
+	constructor is executed
+	return the address (reference) of the object
+	
+Garbage collection
+	process to remove unrefered objects from heap memory
+	automatically done in java
+	garbage collector (part of JRE) periodically does the garbage collection
+	finalize() method is automatically called when object is garbage collected
+	we can request for garbage collection by calling System.gc()
+	
+Arrays
+		arrays in java are objects
+		declare array reference
+					int x[];  // no array is created
+					int [] x
+		int x[] = new int[10];  // creates array objec capable of storing 10 integers 
+		x= new int[100] ; new array with 100 integers is assiged to x. array created at line 33 is garbage collected
+		
+		array elemnts are automatically initialized to default value
+		we can access any array element using index
+		x[0]=32;  	// first element value will be 32
+		x[4]=120;	// 5th element value will be 120
+		
+		array size is available through array.length
+		all elemnts can be accessed using for loop
+		
+		for(int i=0; i < x.length;i++){
+		  System.out.println(x[i])
+		}
+		
+		trying to access element not in the range leads to ArrayIndexOutofBoundsException
+		
+		to create initalized array
+		     int x[]= {23,45,67,12,87,43};
+			 
+		special loop for arrays (for each loop or enhanced for loop):
+		----------------------------------------------------------------------------
+		format:
+			for(datatype variable: array){
+				// variable will contain one element of the array
+			}
+		
+			for(int a: x){
+				System.out.println(a)
+		}
+		
+
+
+
+
