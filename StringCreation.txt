@@ -1,0 +1,20 @@
+Notes about creating String objects
+==================================
+
+String s1 = "hello";
+String s2 = "hello";
+
+s1 and s2 refer to the same object in String pool
+
+s1 == s2            <--  true      as both are refering to the same object
+s1.equals(s2)    <--  true      as the values are same
+
+=======================================================
+
+String s1 = new String("hello");
+String s2 = new String("hello");
+
+s1 and s2 refer to 2 different objects
+
+s1 == s2           <--  false    as reference values are different
+s1.equals(s2)   <--  true     as value is same
