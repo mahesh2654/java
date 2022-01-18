@@ -1,11 +1,11 @@
 package com.layered.service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import com.layered.dao.EmployeeDao;
-import com.layered.dao.EmployeeDaoMapImpl;
-import com.layered.dao.EmployeeJdbcDaoImpl;
+
 import com.layered.entity.Employee;
 import com.layered.exceptions.DataNotFoundException;
 import com.layered.exceptions.SaveDataException;
@@ -13,7 +13,9 @@ import com.layered.exceptions.ServiceException;
 
 public class EmployeeServiceImpl implements EmployeeService {
 
-	EmployeeDao dao = new EmployeeJdbcDaoImpl();
+	
+	EmployeeDao dao;
+	
 
 	@Override
 	public Employee getEmployee(int empId) {
@@ -29,6 +31,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
+	
 	public void raiseSalary(int empId, float percent) throws ServiceException {
 		// get employee
 		// change salary
@@ -49,14 +52,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public float getTotalSalary() {
+	public double getTotalSalary() {
 
-		float total = 0;
 		List<Employee> emps = dao.getAllEmployees();
-		for (Employee e : emps) {
-			total = total + e.getSalary();
-		}
-		return total;
+		
+		return 
+		emps.stream()
+		.mapToDouble(Employee::getSalary)
+		.sum();
+
 	}
 
 	@Override
@@ -83,14 +87,23 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public void createEmployee(Employee e) throws ServiceException {
-		
 		try {
 			dao.saveEmployee(e);
 		} catch (SaveDataException e1) {
 
 			throw new ServiceException(e1.getMessage());
 		}
-		
+	}
+	
+	public Employee getHighestPaidEmployee() {
+	 List<Employee> list=dao.getAllEmployees();
+	 return 
+			 
+	list.stream()
+	.sorted(Comparator.comparing(Employee::getSalary).reversed())
+	.findFirst()
+	.get();
+			  
 	}
 
 }

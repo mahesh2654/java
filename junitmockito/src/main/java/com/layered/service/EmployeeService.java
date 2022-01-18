@@ -10,7 +10,7 @@ public interface EmployeeService {
 	Employee getEmployee(int empId);
 	List<Employee> getAllEmployees();
 	void raiseSalary(int empId, float percent) throws ServiceException;
-	float getTotalSalary();
+	double getTotalSalary();
 	void deleteEmployee(int empId) throws ServiceException;
 	List<Employee> getAllwithSalaryRange(float min, float max);
 	void createEmployee(Employee e) throws ServiceException;
