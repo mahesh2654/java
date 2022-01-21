@@ -1,0 +1,26 @@
+
+Annotation configuration
+-------------------------------
+
+in XML we need to specify <context:annotation-config />
+
+@Autowired <-- autowiring by type (if more than one bean then autowired by name)
+							if not possible to autowire bytpye ot byname, we need to provide @Qualifier
+
+@Qualifier("id") <-- used to identify a aprticular bean for autowiring
+							  This should always be used with @Autowired
+
+@Component <-- used to define a bean in the class itself. Not required to define in XML
+						id of the bean is automatically the class name with first letter in lower case
+
+@Value  <-- used to supply values for simple properties like int, float, String etc		
+
+@PropertySource  <-- used to identify properties file
+
+@Service
+@Configuration	
+@Bean
+@PostConstruct
+@PreDestroy
+
+			
