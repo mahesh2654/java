@@ -13,13 +13,17 @@ in XML we need to specify <context:annotation-config />
 @Component <-- used to define a bean in the class itself. Not required to define in XML
 						id of the bean is automatically the class name with first letter in lower case
 
+@Service  <-- similar to @Component but used for service classes
+@Repository <-- same as @Component
+
 @Value  <-- used to supply values for simple properties like int, float, String etc		
 
 @PropertySource  <-- used to identify properties file
 
-@Service
-@Configuration	
+@Configuration	  <-- used for a class which is capable of configuring beans.
+						This class should have methods with @Bean annatation and return onjects
 @Bean
+
 @PostConstruct
 @PreDestroy
 

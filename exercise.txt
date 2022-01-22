@@ -1,0 +1,35 @@
+
+Item
+	int itemCode
+	String itemName
+	Supplier supplier			(autowired)
+	double price
+	
+Customer
+	int customerId
+	String customerName
+	String address
+
+Supplier  (Only one supplier. Have @Value annotation)
+	int supplierCode
+	String supplierName
+
+Order
+	int orderId			// set it to 1001
+	LocalDate orderDate   // set it to today
+	Customer customer  // autowired
+	Item item1   //autowired
+	Item item2  //autowired
+	Item item3 //autowired
+	
+	create Order and display 
+	
+	Supplier is component
+	All 3 items to be generated using Configuration class
+	1 customer genereated using Configuration class
+	
+	Define Order as Component
+	
+	Main class, use AnnotationConfiaApplicationContext
+	
+	
