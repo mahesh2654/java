@@ -26,5 +26,6 @@ in XML we need to specify <context:annotation-config />
 
 @PostConstruct
 @PreDestroy
+@Scope
 
 			
