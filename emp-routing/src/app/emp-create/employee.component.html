@@ -1,0 +1,100 @@
+<div class="container m-5">
+  <h5 class='text-center'>Create Employee</h5>
+  <form #empForm="ngForm" (submit)="saveData(empForm.value)">
+    <div class="form-group">
+      <label>Employee Id</label>
+      <input
+        type="text"
+        ngModel
+        name="empId"
+        #eid="ngModel"
+        required
+        pattern="[1-9][0-9]{2}"
+        class="form-control"
+      />
+    </div>
+
+    <div *ngIf="eid.touched && eid.invalid">
+      <div *ngIf="eid.errors?.['required']" class="alert alert-danger">
+        Emp Id is required
+      </div>
+      <div *ngIf="eid.errors?.['pattern']" class="alert alert-danger">
+        Emp Id should be 3 digits starting with non-zero
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Name</label>
+      <input
+        type="text"
+        ngModel
+        name="name"
+        #nm="ngModel"
+        required
+        class="form-control"
+      />
+    </div>
+    <div *ngIf="nm.touched && nm.invalid" class="alert alert-danger">
+      Name is required
+    </div>
+
+    <div class="form-group">
+      <label>Salary</label>
+      <input
+        type="number"
+        ngModel
+        name="salary"
+        #sal="ngModel"
+        required
+        min="10000"
+        max="50000"
+        class="form-control"
+      />
+    </div>
+
+    <div *ngIf="sal.touched && sal.invalid">
+      <div *ngIf="sal.errors?.['required']" class="alert alert-danger">
+        Salary is required
+      </div>
+      <div *ngIf="sal.errors?.['min']" class="alert alert-danger">
+        Salary cannot be less than 10000
+      </div>
+      <div *ngIf="sal.errors?.['max']" class="alert alert-danger">
+        Salary cannot be more than 50000
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Gender</label>
+      <input
+        type="text"
+        ngModel
+        name="gender"
+        #gen="ngModel"
+        required
+        pattern="[MF]"
+        class="form-control"
+      />
+    </div>
+
+    <div *ngIf="gen.touched && gen.invalid">
+      <div *ngIf="gen.errors?.['required']" class="alert alert-danger">
+        Gender is required
+      </div>
+      <div *ngIf="gen.errors?.['pattern']" class="alert alert-danger">
+        Gender should be M or F
+      </div>
+    </div>
+
+    <div class="d-grid gap-2">
+      <button
+        type="submit"
+        class="btn btn-outline-primary"
+        [disabled]="empForm.invalid"
+      >
+        Save Data
+      </button>
+      <button type="reset" class="btn btn-outline-danger">Reset</button>
+    </div>
+  </form>
+  <div *ngIf="message != ''" class="alert alert-info p-0">{{ message }}</div>
+</div>
