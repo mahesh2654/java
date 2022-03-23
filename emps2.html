@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script>
+let employees = [
+    {empid:100,name:"Karan",salary:24000},
+    {empid:200,name:"Shruti",salary:34000},
+    {empid:300,name:"Sunil",salary:12000},
+    {empid:400,name:"Kiran",salary:28000},
+    {empid:500,name:"Dhar",salary:15000},
+]
+
+let text=""
+for(e of employees){
+	text=text+"<option value='"+e.empid+"'"+">"+e.name+"</option>";
+}
+
+function showData(){
+	id=document.getElementById("names").value
+	let e=employees.find(function(e){ return e.empid==id})
+	let details="EmpId: "+e.empid+"<br>"+"Name: "+e.name+"<br>"+"Salary: "+e.salary
+	
+	document.getElementById("d1").innerHTML=details
+}
+
+function fillSelect(){
+	document.getElementById("names").innerHTML=text
+}
+</script>
+
+</head>
+<body onload="fillSelect()">
+	<div style='margin: 50px'>
+		Select a name: <select id='names' onchange="showData()">
+
+		</select> <br>
+		<br>
+		<div id='d1'>Details will appear here</div>
+	</div>
+</body>
+</html>
