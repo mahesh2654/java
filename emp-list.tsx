@@ -1,12 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Employee from "../model/employee";
+import EmpCreate from "./emp-create";
 import EmpUpdate from "./emp-update";
 
 const EmpList = () => {
   const [employees, setEmployees] = useState<Employee[]>([]);
   const [message, setMessage] = useState<string>("");
   const [empid, setEmpid] = useState<number>(0);
+  const [addNew, setAddNew] = useState<boolean>(false);
 
   useEffect(() => {
     getDateFromServer();
@@ -49,21 +51,29 @@ const EmpList = () => {
     setEmpid(eid);
   };
 
-  let updateCanceled=()=>{
+  let updateCanceled = () => {
     setMessage("Modify cancelled");
-    setEmpid(0)
+    setEmpid(0);
     setTimeout(() => {
       setMessage("");
     }, 4000);
-  }
-  let closeUpdate =(message:string)=>{
+  };
+  let closeUpdate = (message: string) => {
     getDateFromServer();
     setMessage(message);
-    setEmpid(0)
+    setEmpid(0);
     setTimeout(() => {
       setMessage("");
     }, 4000);
-  }
+  };
+
+  let createEmployee = () => {
+    setAddNew(true);
+  };
+  let createCompleted = () => {
+    setAddNew(false);
+    getDateFromServer();
+  };
   return (
     <div className="container mt-5">
       <div className="row">
@@ -107,14 +117,25 @@ const EmpList = () => {
               })}
             </tbody>
           </table>
-
+          <button onClick={createEmployee} className="btn btn-primary">
+            Create New Employee
+          </button>
           {message != "" ? (
             <p className="alert alert-success">{message}</p>
           ) : null}
         </div>
         {empid != 0 ? (
           <div className="col-4">
-            <EmpUpdate modifyEmpid={empid} completed={closeUpdate}  cancel={updateCanceled}/>
+            <EmpUpdate
+              modifyEmpid={empid}
+              completed={closeUpdate}
+              cancel={updateCanceled}
+            />
+          </div>
+        ) : null}
+        {addNew ? (
+          <div className="col-4">
+            <EmpCreate completed={createCompleted} />
           </div>
         ) : null}
       </div>
