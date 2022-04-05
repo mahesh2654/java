@@ -3,11 +3,7 @@ import { FunctionComponent, useState } from "react";
 import { useForm } from "react-hook-form";
 import Employee from "../model/employee";
 
-interface EmpcreateProps {
-    completed:()=>void
-}
-
-const Empcreate: FunctionComponent<EmpcreateProps> = (props:EmpcreateProps) => {
+const Empcreate = () => {
 
     const [message,setMessage] = useState("");
   const {
@@ -17,6 +13,7 @@ const Empcreate: FunctionComponent<EmpcreateProps> = (props:EmpcreateProps) => {
   } = useForm<Employee>();
 
   const [msgStyle,setMsgStyle]=useState({color:'green'})
+  
   const saveData = (data: Employee) => {
    axios.post("http://localhost:8080/employees",data)
    .then(
@@ -81,7 +78,6 @@ const Empcreate: FunctionComponent<EmpcreateProps> = (props:EmpcreateProps) => {
           <button type="submit" className="btn btn-primary" >
             Save Data
           </button>
-          <button className='btn btn-info' onClick={props.completed}>Back To List</button>
         </div>
       </form>
       {message !=''?(<p style={msgStyle}>{message}</p>):null}

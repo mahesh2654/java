@@ -1,14 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Employee from "../model/employee";
-import EmpCreate from "./emp-create";
-import EmpUpdate from "./emp-update";
+
 
 const EmpList = () => {
   const [employees, setEmployees] = useState<Employee[]>([]);
   const [message, setMessage] = useState<string>("");
   const [empid, setEmpid] = useState<number>(0);
-  const [addNew, setAddNew] = useState<boolean>(false);
 
   useEffect(() => {
     getDateFromServer();
@@ -47,37 +46,10 @@ const EmpList = () => {
     );
   };
 
-  let modifyEmployee = (eid: number) => {
-    setEmpid(eid);
-  };
 
-  let updateCanceled = () => {
-    setMessage("Modify cancelled");
-    setEmpid(0);
-    setTimeout(() => {
-      setMessage("");
-    }, 4000);
-  };
-  let closeUpdate = (message: string) => {
-    getDateFromServer();
-    setMessage(message);
-    setEmpid(0);
-    setTimeout(() => {
-      setMessage("");
-    }, 4000);
-  };
-
-  let createEmployee = () => {
-    setAddNew(true);
-  };
-  let createCompleted = () => {
-    setAddNew(false);
-    getDateFromServer();
-  };
   return (
     <div className="container mt-5">
-      <div className="row">
-        <div className="col-6">
+    
           <h3 style={{ textAlign: "center", color: "blue" }}>Employee List</h3>
 
           <table className="table table-striped table-hover">
@@ -105,41 +77,20 @@ const EmpList = () => {
                       >
                         Delete
                       </button>
-                      <button
-                        className="btn btn-primary"
-                        onClick={() => modifyEmployee(e.empid)}
-                      >
+                      <Link className="btn btn-primary" to={`/updateemp/${e.empid}`} >
                         Modify
-                      </button>
+                      </Link>
                     </td>
                   </tr>
                 );
               })}
             </tbody>
           </table>
-          <button onClick={createEmployee} className="btn btn-primary">
-            Create New Employee
-          </button>
+         
           {message != "" ? (
             <p className="alert alert-success">{message}</p>
           ) : null}
         </div>
-        {empid != 0 ? (
-          <div className="col-4">
-            <EmpUpdate
-              modifyEmpid={empid}
-              completed={closeUpdate}
-              cancel={updateCanceled}
-            />
-          </div>
-        ) : null}
-        {addNew ? (
-          <div className="col-4">
-            <EmpCreate completed={createCompleted} />
-          </div>
-        ) : null}
-      </div>
-    </div>
   );
 };
 

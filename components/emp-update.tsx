@@ -1,16 +1,10 @@
 import axios from "axios";
-import { ChangeEvent, FunctionComponent, useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Employee from "../model/employee";
 
-interface EmpUpdateProps {
-  modifyEmpid: number;
-  completed:(message:string)=>void;
-  cancel:()=>void
-}
 
-const EmpUpdate: FunctionComponent<EmpUpdateProps> = (
-  props: EmpUpdateProps
-) => {
+const EmpUpdate = ( ) => {
   const [emp, setEmp] = useState<Employee>({
     empid: 0,
     name: "",
@@ -19,16 +13,23 @@ const EmpUpdate: FunctionComponent<EmpUpdateProps> = (
   });
   const [message, setMessage] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
+  const [dataFound,setDataFound] =  useState(false);
+
+  let navigate=useNavigate()
+
+  let params=useParams();
 
   useEffect(() => {
-    let url = `http://localhost:8080/employees/${props.modifyEmpid}`;
+    let url = `http://localhost:8080/employees/${params.empid}`;
     axios.get(url).then(
       (response) => {
         setEmp(response.data);
         setLoading(false);
+        setDataFound(true)
       },
       (error) => {
         setMessage(error.response.data.message);
+        setLoading(false);
       }
     );
   }, []);
@@ -46,8 +47,18 @@ const EmpUpdate: FunctionComponent<EmpUpdateProps> = (
   let saveData=()=>{
       axios.put("http://localhost:8080/employees",emp)
       .then(
-          (response)=>{ props.completed(response.data.message)},
-          (error)=>{ props.completed(error.response.data.message) }
+          (response)=>{ 
+            setMessage(response.data.message);
+            setTimeout(() => {
+              navigate("/emplist")
+            }, 5000);
+          },
+          (error)=>{ 
+            setMessage(error.response.data.message);
+            setTimeout(() => {
+              navigate("/emplist")
+            }, 5000);
+           }
       )
   }
 
@@ -55,9 +66,11 @@ const EmpUpdate: FunctionComponent<EmpUpdateProps> = (
     return <h4>loading .....</h4>;
   }
 
+  if(dataFound){
   return (
     <div>
       <h3>Modify Employee</h3>
+
       <div className="form-group">
         Employee Id:
         <input
@@ -99,10 +112,15 @@ const EmpUpdate: FunctionComponent<EmpUpdateProps> = (
       </div>
       <div>
         <button className="btn btn-success" onClick={saveData} >Save</button>
-        <button className="btn btn-danger" onClick={ props.cancel}>Cancel</button>
+        <button className="btn btn-danger" onClick={ ()=>{navigate('/emplist')} }>Cancel</button>
       </div>
+      {message != ""? <p className='alert alert-success'>{message} </p>:null}
     </div>
   );
+  }
+  else{
+    return (<div>{message}</div>)
+  }
 };
 
 export default EmpUpdate;
