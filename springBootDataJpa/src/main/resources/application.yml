@@ -1,8 +1,0 @@
-#spring:
-#  datasource:
-#    driver-class-name: org.apache.derby.jdbc.ClientDriver
-#    url: jdbc:derby://localhost:1527/ramanadb
-#  jpa:
-#    hibernate:
-#      ddl-auto: none
-
